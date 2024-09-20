@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class PoolMono<T> where T : MonoBehaviour
 {
@@ -11,20 +9,13 @@ public class PoolMono<T> where T : MonoBehaviour
 
     private List<T> pool;
     
-    public PoolMono(T prefab, int count, Transform container)
+    public PoolMono(T prefab, int count, Transform container = null)
     {
         this.prefab = prefab;
         this.container = container;
         CreatePool(count);
     }
     
-    public PoolMono(T prefab, int count)
-    {
-        this.prefab = prefab;
-        this.container = null;
-        CreatePool(count);
-    }
-
     private void CreatePool(int count)
     {
         pool = new List<T>();

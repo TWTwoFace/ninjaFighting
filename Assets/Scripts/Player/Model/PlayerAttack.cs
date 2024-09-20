@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput), typeof(Animator))]
 public class PlayerAttack : MonoBehaviour
 {
+    public event Action Started;
     public event Action Attacked;
 
     private const string _triggerName = "Attack";
@@ -27,7 +28,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
-        print("q");
+        if (enabled == false)
+            return;
+
+        Started?.Invoke();
         _animator.SetTrigger(_triggerName);
     }
 

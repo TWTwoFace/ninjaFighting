@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public event Action Attacked;
+    public event Action Dashed;
 
     private PlayerInputActions _input;
     private Camera _camera;
@@ -36,13 +37,20 @@ public class PlayerInput : MonoBehaviour
         Attacked?.Invoke();
     }
 
+    private void OnDashPerformed(InputAction.CallbackContext context)
+    {
+        Dashed?.Invoke();
+    }
+
     private void OnEnable()
     {
         _input.Player.Attack.performed += OnAttackPerformed;
+        _input.Player.Dash.performed += OnDashPerformed;
     }
 
     private void OnDisable()
     {
         _input.Player.Attack.performed -= OnAttackPerformed;
+        _input.Player.Dash.performed -= OnDashPerformed;
     }
 }

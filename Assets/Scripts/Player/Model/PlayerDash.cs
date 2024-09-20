@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerDash : MonoBehaviour
 {
+    public event Action Started;
     public event Action Dashed;
 
     private const string _triggerName = "Dash";
@@ -23,18 +24,21 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
-        print("q");
+        if (enabled == false)
+            return;
+
+        Started?.Invoke();
         _animator.SetTrigger(_triggerName);
     }
 
     private void OnEnable()
     {
-        //_input.Dashed += Dash;
+        _input.Dashed += Dash;
     }
 
 
     private void OnDisable()
     {
-        //_input.Dashed -= Dash;
+        _input.Dashed -= Dash;
     }
 }

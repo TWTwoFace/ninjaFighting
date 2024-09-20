@@ -3,7 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private Transform _visualsTransform;
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private float _inAttackSpeed;
+    [SerializeField] private float _dashSpeed;
 
     private PlayerInput _input;
 
@@ -12,15 +15,19 @@ public class PlayerMovement : MonoBehaviour
         _input = GetComponent<PlayerInput>();
     }
 
-    private void Move()
+    public void Move()
     {
         Vector3 direction = _input.GetMoveDirection();
-        transform.Translate(direction * _speed * Time.deltaTime);
+        transform.Translate(direction * _runSpeed * Time.deltaTime);
     }
 
-    //DELETE METHOD
-    private void Update()
+    public void AttackMove()
     {
-        Move();
+        transform.Translate(_visualsTransform.forward * _runSpeed * Time.deltaTime);
+    }
+
+    public void DashMove()
+    {
+        transform.Translate(_visualsTransform.forward * _dashSpeed * Time.deltaTime);
     }
 }
