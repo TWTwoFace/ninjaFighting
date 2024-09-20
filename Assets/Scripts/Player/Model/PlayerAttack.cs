@@ -36,7 +36,6 @@ public class PlayerAttack : MonoBehaviour
         _input.Attacked += Attack;
     }
 
-
     private void OnDisable()
     {
         _input.Attacked -= Attack;
