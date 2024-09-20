@@ -11,7 +11,7 @@ public class EnemyPool : MonoBehaviour
 
     private void Awake()
     {
-        pool = new PoolMono<Enemy>(prefab, poolCapacity);
+        pool = new PoolMono<Enemy>(prefab, poolCapacity, transform);
     }
 
     private void Update()
