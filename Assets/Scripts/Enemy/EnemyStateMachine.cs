@@ -4,11 +4,12 @@ public class EnemyStateMachine : StateMachine
 {
     [SerializeField] private EnemyAttack enemyAttack;
     [SerializeField] private EnemyMovement enemyMovement;
+    [SerializeField] private EnemyAttackStateMachine attackStateMachine;
 
     protected override void InitBehaviours()
     {
         base.InitBehaviours();
-        //_behavioursMap[typeof(EnemyAttackBehaviour)] = new EnemyAttackBehaviour();
+        _behavioursMap[typeof(EnemyAttackBehaviour)] = new EnemyAttackBehaviour(attackStateMachine);
         _behavioursMap[typeof(EnemyMovementBehaviour)] = new EnemyMovementBehaviour(enemyMovement);
     }
 

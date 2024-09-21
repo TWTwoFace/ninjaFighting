@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 3713736462234900803}
   - component: {fileID: 9139322360444234366}
   - component: {fileID: 4853137506847731888}
-  - component: {fileID: 2333493764374307231}
-  - component: {fileID: 1314078724056020068}
+  - component: {fileID: 6288761073371467413}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -132,7 +131,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2333493764374307231
+--- !u!114 &6288761073371467413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,25 +140,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2957788112206012773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57ac058b7b035df4da3dd465bd05e616, type: 3}
+  m_Script: {fileID: 11500000, guid: 648254991b7e44db9bd5a44904db808d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1314078724056020068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2957788112206012773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39c290ebf9af47678b1824a877e0a33e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 2333493764374307231}
-  followRange: 6.26
-  displayFollowRange: 1
-  attackRange: 2.69
-  attackCooldown: 0
-  damage: 0
-  displayAttackRange: 1
+  followRange: 5
+  attackRange: 2
+  stopDistance: 1
+  stepAwayDistance: 6
+  displayFollowRange: 0
+  target: {fileID: 0}

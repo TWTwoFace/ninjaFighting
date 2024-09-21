@@ -4,8 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class EnemyAttack : MonoBehaviour
 {
-	public event Action Attacked;
-	public event Action Started;
+
+	public event Action AttackPerformed;
+	public event Action AttackStarted;
 
 	[SerializeField] private float _timeToAttack;
 
@@ -46,11 +47,13 @@ public class EnemyAttack : MonoBehaviour
 		}
 
 		_animator.SetTrigger(_triggerName);
-		Started?.Invoke();
+
+		AttackStarted?.Invoke();
 	}
 
 	public void OnAttackEnd()
 	{
-		Attacked?.Invoke();
+
+		AttackPerformed?.Invoke();
 	}
 }
