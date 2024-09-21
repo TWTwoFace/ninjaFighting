@@ -656,7 +656,7 @@ MonoBehaviour:
   ShoulderOffset: {x: 0, y: 0, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
-  CameraDistance: 7
+  CameraDistance: 4
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 0
@@ -841,8 +841,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633141574}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.028536513, y: 0, z: 0, w: 0.9995928}
-  m_LocalPosition: {x: 0, y: 1.809, z: -7}
+  m_LocalRotation: {x: 0.0498137, y: 0, z: 0, w: 0.99875855}
+  m_LocalPosition: {x: 0, y: 1.809, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -913,8 +913,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1796179992}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.028536513, y: 0, z: 0, w: 0.9995928}
-  m_LocalPosition: {x: 0, y: 1.809, z: -7}
+  m_LocalRotation: {x: 0.0498137, y: 0, z: 0, w: 0.99875855}
+  m_LocalPosition: {x: 0, y: 1.809, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1013,6 +1013,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345241771058548482, guid: 9523f0697ce15bd4bacb72209e5d376c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345241771058548482, guid: 9523f0697ce15bd4bacb72209e5d376c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345241771058548482, guid: 9523f0697ce15bd4bacb72209e5d376c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345241771058548482, guid: 9523f0697ce15bd4bacb72209e5d376c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345241771058548482, guid: 9523f0697ce15bd4bacb72209e5d376c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6942432448770117137, guid: 9523f0697ce15bd4bacb72209e5d376c, type: 3}
