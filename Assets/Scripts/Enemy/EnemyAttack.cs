@@ -24,4 +24,15 @@ public class EnemyAttack : MonoBehaviour
 						}
 				}
 		}
+
+		private void OnDrawGizmosSelected()
+		{
+				int rayAmount = 8;
+				Gizmos.color = Color.red;
+				for (int i = 0; i < rayAmount; i++)
+				{
+					var angle = Quaternion.Euler(0f, 360f/rayAmount*i, 0f) * transform.forward;
+					Gizmos.DrawLine(transform.position, transform.position + angle * attackRange);
+				}
+		}
 }
