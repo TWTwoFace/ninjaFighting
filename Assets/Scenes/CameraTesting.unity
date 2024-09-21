@@ -396,7 +396,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2135b146294a6f40b619ce98a33596d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _visualsTransform: {fileID: 0}
+  _runSpeed: 0
+  _inAttackSpeed: 0
+  _dashSpeed: 0
 --- !u!114 &87206106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,6 +460,8 @@ MonoBehaviour:
   shoulderPoint: {fileID: 1278288992}
   verticalRotationPower: 10
   horizontalRotationPower: 10
+  maxVerticalAngle: 90
+  minVerticalAngle: -90
 --- !u!1 &121410638
 GameObject:
   m_ObjectHideFlags: 0
