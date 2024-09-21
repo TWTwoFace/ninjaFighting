@@ -1,16 +1,20 @@
+using System;
 using UnityEngine;
 
 public class EnemyAttackStateMachine : StateMachine, INestedStateMachine
 {
+    public event Action Ended;
+
     [SerializeField] private EnemyAttack enemyAttack;
     [SerializeField] private EnemyMovement enemyMovement;
-    
-    public void Reset()
+    [SerializeField] private EnemyWaiting enemyWaiting;    
+
+    public void Reinitialize()
     {
         SetBehaviourByDefault();
     }
 
-    public void Start()
+    public void Initialize()
     {
         enabled = true;
     }
@@ -23,20 +27,28 @@ public class EnemyAttackStateMachine : StateMachine, INestedStateMachine
     protected override void InitBehaviours()
     {
         base.InitBehaviours();
+        _behavioursMap[typeof(EnemyAttackIdleBehaviour)] = new EnemyAttackIdleBehaviour();
         _behavioursMap[typeof(EnemyInAttackBehaviour)] = new EnemyInAttackBehaviour(enemyAttack);
         _behavioursMap[typeof(EnemyStepAwayBehaviour)] = new EnemyStepAwayBehaviour(enemyMovement);
-        
+        _behavioursMap[typeof(EnemyWaitingBehaviour)] = new EnemyWaitingBehaviour(enemyWaiting);
         Stop();
     }
 
     protected override void SetBehaviourByDefault()
     {
-        SetEnemyInAttackBehaviour();
+        SetEnemyAttackIdleBehaviour();
     }
-    
-    private void SetEnemyInAttackBehaviour()
+
+    private void SetEnemyAttackIdleBehaviour()
+    {
+        var behaviour = GetBehaviour<EnemyAttackIdleBehaviour>();
+        SetBehaviour(behaviour);
+    }
+
+    public void SetEnemyInAttackBehaviour()
     {
         var behaviour = GetBehaviour<EnemyInAttackBehaviour>();
+        print(behaviour);
         SetBehaviour(behaviour);
     }
 
@@ -46,16 +58,28 @@ public class EnemyAttackStateMachine : StateMachine, INestedStateMachine
         SetBehaviour(behaviour);
     }
 
+    private void SetEnemyWaitingBehaviour()
+    {
+        var behaviour = GetBehaviour<EnemyWaitingBehaviour>();
+        SetBehaviour(behaviour);
+    }
+
+    private void OnCycleEnd()
+    {
+        Ended?.Invoke();
+    }
+
     protected override void Subscribe()
     {
         enemyAttack.AttackPerformed += SetEnemyStepAwayBehaviour;
-        enemyMovement.SteppedAway += SetEnemyInAttackBehaviour;
+        enemyMovement.SteppedAway += SetEnemyWaitingBehaviour;
+        enemyWaiting.Ended += OnCycleEnd;
     }
 
     protected override void Unsubscribe()
     {
         enemyAttack.AttackPerformed -= SetEnemyStepAwayBehaviour;
-        enemyMovement.SteppedAway += SetEnemyInAttackBehaviour;
+        enemyMovement.SteppedAway -= SetEnemyWaitingBehaviour;
+        enemyWaiting.Ended -= OnCycleEnd;
     }
-
 }

@@ -49,11 +49,11 @@ public class EnemyAttack : MonoBehaviour
 		_animator.SetTrigger(_triggerName);
 
 		AttackStarted?.Invoke();
-	}
+        AttackPerformed?.Invoke();
+    }
 
 	public void OnAttackEnd()
 	{
-
 		AttackPerformed?.Invoke();
 	}
 }

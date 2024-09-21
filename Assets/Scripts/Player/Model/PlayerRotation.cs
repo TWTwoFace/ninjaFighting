@@ -5,7 +5,7 @@ public class PlayerRotation : MonoBehaviour
 {
     [SerializeField] private Transform _visualsTransform;
 
-    private const float _rotationSpeed = 1000f;
+    private const float _rotationSpeed = 250f;
     private PlayerInput _playerInput;
 
     private void Awake()

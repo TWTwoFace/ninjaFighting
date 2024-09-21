@@ -1,8 +1,8 @@
 public interface INestedStateMachine
 {
-	void Reset();
+	void Reinitialize();
 
-	void Start();
+	void Initialize();
 
 	void Stop();
 }

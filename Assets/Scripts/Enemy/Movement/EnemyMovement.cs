@@ -4,6 +4,9 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public event Action AttackRangeReached;
+    public event Action SteppedAway;
+
     [SerializeField] private float followRange;
     [SerializeField] private float attackRange;
     [SerializeField] private float stopDistance;
@@ -13,48 +16,38 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private NavMeshAgent agent;
 
-    public event Action AttackRangeReached;
-    public event Action AttackRangeExited;
-    public event Action SteppedAway;
+    private Vector3 _stepAwayPosition;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
-    {
-        /*
-        var distance = Vector3.Distance(transform.position, target.position);
-
-        if (distance <= attackRange)
-        {
-            AttackRangeReached?.Invoke();
-        }
-        else
-        {
-            AttackRangeExited?.Invoke();
-        }*/
-    }
-
     public void MoveToTarget()
     {
         agent.SetDestination(target.position - (target.position - transform.position).normalized * stopDistance);
+        DetermineMovedToTarget();
     }
     
     public void StepAwayFromTarget()
     {
-        Vector3 newPosition = (transform.position - target.position).normalized * stepAwayDistance;
-        if(NavMesh.SamplePosition(newPosition, out NavMeshHit myNavHit, 5, -1))
+        Vector3 newPosition = transform.position + (transform.position - target.position).normalized * stepAwayDistance;
+
+        print((target.position - newPosition).magnitude);
+
+        if(NavMesh.SamplePosition(newPosition, out NavMeshHit myNavHit, 2, -1))
         {
             agent.SetDestination(myNavHit.position);
-            
-            //раскомментировать для дебага
-            /*
-            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.transform.position = myNavHit.position;
-            */
+            _stepAwayPosition = myNavHit.position;
         }
+    }
+
+    public void DetermineSteppedAway()
+    {
+        Vector2 point = new Vector2(_stepAwayPosition.x, _stepAwayPosition.z);
+        Vector2 agentPoint = new Vector2(agent.transform.position.x, agent.transform.position.z);
+        if ((point - agentPoint).magnitude < 0.1f)
+            SteppedAway?.Invoke();
     }
 
     public void StopMoving()
@@ -62,7 +55,18 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(transform.position);
     }
 
-    public void OnDrawGizmosSelected()
+    private void DetermineMovedToTarget()
+    {
+        var distance = Vector3.Distance(transform.position, target.position) - 0.1f;
+
+        if (distance > attackRange)
+            return;
+
+        AttackRangeReached?.Invoke();
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
     {
         int rayAmount = 16;
         Gizmos.color = Color.yellow;
@@ -72,4 +76,5 @@ public class EnemyMovement : MonoBehaviour
             Gizmos.DrawLine(agent.transform.position, agent.transform.position + angle * followRange);
         }
     }
+#endif
 }

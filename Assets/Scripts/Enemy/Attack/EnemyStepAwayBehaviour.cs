@@ -11,4 +11,9 @@ public class EnemyStepAwayBehaviour : State
 	{
 		enemyMovement.StepAwayFromTarget();
 	}
+
+	public override void Update()
+	{
+		enemyMovement.DetermineSteppedAway();
+	}
 }

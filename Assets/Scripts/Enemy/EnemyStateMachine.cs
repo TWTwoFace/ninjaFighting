@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyStateMachine : StateMachine
 {
-    [SerializeField] private EnemyAttack enemyAttack;
     [SerializeField] private EnemyMovement enemyMovement;
     [SerializeField] private EnemyAttackStateMachine attackStateMachine;
 
@@ -33,12 +32,12 @@ public class EnemyStateMachine : StateMachine
     protected override void Subscribe()
     {
         enemyMovement.AttackRangeReached += SetEnemyAttackBehaviour;
-        enemyMovement.AttackRangeExited += SetEnemyMovementBehaviour;
+        attackStateMachine.Ended += SetEnemyMovementBehaviour;
     }
 
     protected override void Unsubscribe()
     {
         enemyMovement.AttackRangeReached -= SetEnemyAttackBehaviour;
-        enemyMovement.AttackRangeExited -= SetEnemyMovementBehaviour;
+        attackStateMachine.Ended -= SetEnemyMovementBehaviour;
     }
 }
