@@ -5,6 +5,9 @@ public class PlayerVisuals : MonoBehaviour
     private PlayerMovement _movement;
     private Animator _animator;
 
+    private const string Speed = "Speed";
+    float blendSpeed = 1f;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -13,9 +16,16 @@ public class PlayerVisuals : MonoBehaviour
 
     private void Update()
     {
+        var currentSpeed = _animator.GetFloat(Speed);
         if (_movement.isMoving)
-            _animator.SetFloat("Speed", 1f);
+        {
+            var newSpeed = Mathf.Lerp(currentSpeed, 1f, Time.deltaTime * blendSpeed * 5);
+            _animator.SetFloat(Speed, newSpeed);
+        }
         else
-            _animator.SetFloat("Speed", 0f);
+        {
+            var newSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime * blendSpeed * 2f);
+            _animator.SetFloat(Speed, newSpeed);
+        }
     }
 }
