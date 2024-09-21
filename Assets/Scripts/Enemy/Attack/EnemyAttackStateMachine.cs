@@ -48,7 +48,6 @@ public class EnemyAttackStateMachine : StateMachine, INestedStateMachine
     public void SetEnemyInAttackBehaviour()
     {
         var behaviour = GetBehaviour<EnemyInAttackBehaviour>();
-        print(behaviour);
         SetBehaviour(behaviour);
     }
 
