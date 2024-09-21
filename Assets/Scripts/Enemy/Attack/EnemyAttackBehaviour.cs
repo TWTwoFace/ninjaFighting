@@ -9,11 +9,12 @@ public class EnemyAttackBehaviour : State
 
     public override void Enter()
     {
-        
+        attackStateMachine.Start();
     }
 
     public override void Exit()
     {
-        
+        attackStateMachine.Stop();
+        attackStateMachine.Reset();
     }
 }

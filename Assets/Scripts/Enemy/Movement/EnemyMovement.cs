@@ -15,6 +15,7 @@ public class EnemyMovement : MonoBehaviour
 
     public event Action AttackRangeReached;
     public event Action AttackRangeExited;
+    public event Action SteppedAway;
 
     private void Awake()
     {
@@ -23,11 +24,6 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StepAwayFromTarget();
-        }
-        MoveToTarget();
         /*
         var distance = Vector3.Distance(transform.position, target.position);
 
@@ -45,22 +41,20 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.SetDestination(target.position - (target.position - transform.position).normalized * stopDistance);
     }
-
-    private Vector3 newPos;
+    
     public void StepAwayFromTarget()
     {
-        Vector3 newPosition = Vector3.zero; 
-        if (newPos == Vector3.zero)
+        Vector3 newPosition = (transform.position - target.position).normalized * stepAwayDistance;
+        if(NavMesh.SamplePosition(newPosition, out NavMeshHit myNavHit, 5, -1))
         {
-            newPosition = (transform.position - target.position).normalized * stepAwayDistance;
-            if(NavMesh.SamplePosition(transform.position, out NavMeshHit myNavHit, 100 , -1))
-            {
-                newPosition = myNavHit.position;
-                newPos = newPosition;
-            }
+            agent.SetDestination(myNavHit.position);
+            
+            //раскомментировать для дебага
+            /*
+            var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.transform.position = myNavHit.position;
+            */
         }
-        
-        if (newPosition != null) agent.SetDestination(newPosition);
     }
 
     public void StopMoving()
