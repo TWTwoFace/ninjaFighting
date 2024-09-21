@@ -33,13 +33,11 @@ public class EnemyStateMachine : StateMachine
     {
         enemyMovement.AttackRangeReached += SetEnemyAttackBehaviour;
         enemyMovement.AttackRangeExited += SetEnemyMovementBehaviour;
-        enemyAttack.AttackPerformed += SetEnemyMovementBehaviour;
     }
 
     protected override void Unsubscribe()
     {
         enemyMovement.AttackRangeReached -= SetEnemyAttackBehaviour;
         enemyMovement.AttackRangeExited -= SetEnemyMovementBehaviour;
-        enemyAttack.AttackPerformed -= SetEnemyMovementBehaviour;
     }
 }

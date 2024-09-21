@@ -1,38 +1,56 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class EnemyAttack : MonoBehaviour
 {
-		[SerializeField] private float attackRange;
-		[SerializeField] private float attackCooldown;
-		[SerializeField] private int damage;
-		[SerializeField] private bool displayAttackRange;
-		private float timeTilNextAttack;
+	public event Action Attacked;
+	public event Action Started;
 
-		public event Action AttackPerformed;
+	[SerializeField] private float _timeToAttack;
 
-		public void Attack()
+	private const string _triggerName = "Attack";
+
+	private Animator _animator;
+
+	private float _timer;
+	private bool _canAttack;
+
+	private void Awake()
+	{
+		_animator = GetComponent<Animator>();
+	}
+
+	private void Update()
+	{
+		DetermineCanAttackByTimer();
+	}
+
+	private void DetermineCanAttackByTimer()
+	{
+		if (_timer >= _timeToAttack)
 		{
-				Ray ray = new Ray(transform.position, transform.forward);
-				Physics.Raycast(ray, out RaycastHit hit, attackRange);
-				if (hit.collider)
-				{
-						if (hit.collider.TryGetComponent(out PlayerHealth playerHealth))
-						{
-								playerHealth.TakeDamage(damage);
-								AttackPerformed?.Invoke();
-						}
-				}
+			_canAttack = true;
+			return;
+		}
+		_timer += Time.deltaTime;
+		_canAttack = false;
+	}
+
+	public void Attack()
+	{
+		if (_canAttack == false)
+		{
+			OnAttackEnd();
+			return;
 		}
 
-		private void OnDrawGizmosSelected()
-		{
-				int rayAmount = 8;
-				Gizmos.color = Color.red;
-				for (int i = 0; i < rayAmount; i++)
-				{
-					var angle = Quaternion.Euler(0f, 360f/rayAmount*i, 0f) * transform.forward;
-					Gizmos.DrawLine(transform.position, transform.position + angle * attackRange);
-				}
-		}
+		_animator.SetTrigger("Attack");
+		Started?.Invoke();
+	}
+
+	public void OnAttackEnd()
+	{
+		Attacked?.Invoke();
+	}
 }
