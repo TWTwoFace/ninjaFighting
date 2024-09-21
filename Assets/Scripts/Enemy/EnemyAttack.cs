@@ -45,7 +45,7 @@ public class EnemyAttack : MonoBehaviour
 			return;
 		}
 
-		_animator.SetTrigger("Attack");
+		_animator.SetTrigger(_triggerName);
 		Started?.Invoke();
 	}
 
