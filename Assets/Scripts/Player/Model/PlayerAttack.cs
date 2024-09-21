@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,6 +7,8 @@ public class PlayerAttack : MonoBehaviour
 {
     public event Action Started;
     public event Action Attacked;
+
+    [SerializeField] private Collider _weaponCollider;
 
     private const string _triggerName = "Attack";
 
@@ -21,15 +21,23 @@ public class PlayerAttack : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        //_weaponCollider.enabled = false;
+    }
+    
     public void OnAttackEnd()
     {
         Attacked?.Invoke();
+        //_weaponCollider.enabled = false;
     }
 
     private void Attack()
     {
         if (enabled == false)
             return;
+
+        //_weaponCollider.enabled = true;
 
         Started?.Invoke();
         _animator.SetTrigger(_triggerName);

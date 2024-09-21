@@ -122,84 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &921070555
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1354512932965299533, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5235141693719061397, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5235141693719061397, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8855585021043680746, guid: 0bd93e87dab401266866d5b59d9ab57b,
-        type: 3}
-      propertyPath: attackRange
-      value: 2.38
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0bd93e87dab401266866d5b59d9ab57b, type: 3}
 --- !u!1 &1110668303
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,25 +556,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e9fb86dd6a7afa8fc8905eec1479f50f, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &1788324699
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolCapacity: 1
-  prefab: {fileID: 8855585021043680746, guid: 0bd93e87dab401266866d5b59d9ab57b, type: 3}
+  prefab: {fileID: 1314078724056020068, guid: 0bd93e87dab401266866d5b59d9ab57b, type: 3}
   target: {fileID: 1469824750}
 --- !u!4 &1788324701
 Transform:
@@ -709,4 +612,3 @@ SceneRoots:
   - {fileID: 1698964647}
   - {fileID: 1469824750}
   - {fileID: 1788324701}
-  - {fileID: 921070555}

@@ -10,15 +10,19 @@ public class PlayerDash : MonoBehaviour
 
     private PlayerInput _input;
     private Animator _animator;
+    private PlayerHealth _health;
 
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
+        _health = GetComponent<PlayerHealth>();
     }
 
     public void OnDashEnd()
     {
+        _health.enabled = true;
+
         Dashed?.Invoke();
     }
 
@@ -26,6 +30,8 @@ public class PlayerDash : MonoBehaviour
     {
         if (enabled == false)
             return;
+
+        _health.enabled = false;
 
         Started?.Invoke();
         _animator.SetTrigger(_triggerName);
@@ -35,7 +41,6 @@ public class PlayerDash : MonoBehaviour
     {
         _input.Dashed += Dash;
     }
-
 
     private void OnDisable()
     {

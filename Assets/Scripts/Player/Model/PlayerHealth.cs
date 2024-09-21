@@ -17,6 +17,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (enabled == false)
+            return;
+
         if (damage < 0)
             return;
 

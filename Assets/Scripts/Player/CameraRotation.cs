@@ -9,7 +9,7 @@ public class CameraRotation : MonoBehaviour
     [SerializeField] private float _timeToReturnCamera;
 
     [SerializeField] private float verticalRotationPower;
-    [SerializeField] private float horizontalRotationPower;
+    [SerializeField] private float horizontalRotationPower; 
 
     [SerializeField] private float maxVerticalAngle;
     [SerializeField] private float minVerticalAngle;
