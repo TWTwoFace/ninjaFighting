@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -9,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
 	[SerializeField] private int _maxHealth;
 
 	private int _health;
+	private bool _canGetDamage = true;
 
 	private void Start()
 	{
@@ -20,6 +22,9 @@ public class EnemyHealth : MonoBehaviour
 		if (enabled == false)
 			return;
 
+		if (_canGetDamage == false)
+			return;
+
 		if (damage < 0)
 			return;
 
@@ -27,9 +32,20 @@ public class EnemyHealth : MonoBehaviour
 
 		HealthChanged?.Invoke(_health);
 
-		if(_health <= 0)
+		StartCoroutine(OnTakeDamageRoutine());
+
+		print("hitted");
+
+        if (_health <= 0)
 		{
 			Dead?.Invoke();
 		}
+	}
+
+	private IEnumerator OnTakeDamageRoutine()
+	{
+		_canGetDamage = false;
+		yield return new WaitForSeconds(0.2f);
+		_canGetDamage = true;
 	}
 }

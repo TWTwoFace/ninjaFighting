@@ -58,7 +58,6 @@ public class PlayerAttack : MonoBehaviour
         if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
         {
             enemyHealth.TakeDamage(_damage);
-            print("damaged");
         }
     }
 }
