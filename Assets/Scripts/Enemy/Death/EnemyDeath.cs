@@ -1,7 +1,4 @@
-namespace Enemy.Death
+public class EnemyDeath
 {
-	public class EnemyDeath
-	{
 		
-	}
 }
