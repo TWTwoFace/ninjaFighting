@@ -4,6 +4,9 @@ public class EnemyVisuals : MonoBehaviour
 {
 	[SerializeField] private float moveDeltaAnimationThreshold;
 	[SerializeField] private EnemyHealth _health;
+	
+	[SerializeField] private Transform hitParticlesPoint;
+	[SerializeField] private ParticleSystem[] hitParticles;
 
 	private Animator animator;
 	
@@ -37,10 +40,18 @@ public class EnemyVisuals : MonoBehaviour
 			animator.SetFloat(Speed, newSpeed);
 		}
 	}
+	
+	private void SpawnHitParticle()
+	{
+		Instantiate(hitParticles[Random.Range(0, hitParticles.Length)], hitParticlesPoint.position + transform.right * 0.1f, Quaternion.Euler(transform.right));
+		Instantiate(hitParticles[Random.Range(0, hitParticles.Length)], hitParticlesPoint.position, Quaternion.identity);
+		Instantiate(hitParticles[Random.Range(0, hitParticles.Length)], hitParticlesPoint.position + transform.right * -0.1f, Quaternion.Euler(transform.right));
+	}
 
 	private void OnDamaged()
 	{
 		animator.SetTrigger("Hitted");
+		SpawnHitParticle();
 	}
 
 	private void OnEnable()
