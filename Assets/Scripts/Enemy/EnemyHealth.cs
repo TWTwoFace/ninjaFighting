@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+	[SerializeField] private WorldType enemyType;
 	public event Action<int> HealthChanged;
 	public event Action Dead;
 	public event Action Damaged;
@@ -21,6 +22,9 @@ public class EnemyHealth : MonoBehaviour
 
 	public void TakeDamage(int damage)
 	{
+		if (WorldSwitcher.CurrentWorld != enemyType)
+			return;
+		
 		if (enabled == false)
 			return;
 
