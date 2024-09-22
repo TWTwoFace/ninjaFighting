@@ -30,7 +30,7 @@ public class EnemyAttackStateMachine : StateMachine, INestedStateMachine
         _behavioursMap[typeof(EnemyAttackIdleBehaviour)] = new EnemyAttackIdleBehaviour();
         _behavioursMap[typeof(EnemyInAttackBehaviour)] = new EnemyInAttackBehaviour(enemyAttack);
         _behavioursMap[typeof(EnemyStepAwayBehaviour)] = new EnemyStepAwayBehaviour(enemyMovement);
-        _behavioursMap[typeof(EnemyWaitingBehaviour)] = new EnemyWaitingBehaviour(enemyWaiting);
+        _behavioursMap[typeof(EnemyWaitingBehaviour)] = new EnemyWaitingBehaviour(enemyWaiting, enemyMovement);
         Stop();
     }
 
