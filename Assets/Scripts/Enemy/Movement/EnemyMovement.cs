@@ -72,6 +72,11 @@ public class EnemyMovement : MonoBehaviour
         //transform.Translate(_hittedDirection * _hittedSpeed * Time.deltaTime);
     }
 
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
     private void DetermineMovedToTarget()
     {
         var distance = Vector3.Distance(transform.position, target.position) - 0.1f;
