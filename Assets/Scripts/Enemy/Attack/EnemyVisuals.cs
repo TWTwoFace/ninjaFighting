@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyVisuals : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class EnemyVisuals : MonoBehaviour
 	
 	[SerializeField] private ParticleSystem leftFootParticles;
 	[SerializeField] private ParticleSystem rightFootParticles;
+	
+	[SerializeField] private ParticleSystem spawnEffect;
 
 	private Animator animator;
 	
@@ -23,6 +27,11 @@ public class EnemyVisuals : MonoBehaviour
 	{
 		previousPosition = transform.position;
 		animator = GetComponent<Animator>();
+	}
+
+	private void Start()
+	{
+		spawnEffect.Play();
 	}
 
 	private void Update()
