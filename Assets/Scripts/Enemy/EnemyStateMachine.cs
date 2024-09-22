@@ -15,6 +15,7 @@ public class EnemyStateMachine : StateMachine
         _behavioursMap[typeof(EnemyAttackBehaviour)] = new EnemyAttackBehaviour(attackStateMachine);
         _behavioursMap[typeof(EnemyMovementBehaviour)] = new EnemyMovementBehaviour(enemyMovement);
         _behavioursMap[typeof(EnemyDeathBehaviour)] = new EnemyDeathBehaviour(enemyDeath, enemyMovement, navMeshAgent);
+        _behavioursMap[typeof(EnemyHittedBehaviour)] = new EnemyHittedBehaviour(enemyMovement);
     }
 
     protected override void SetBehaviourByDefault()
@@ -40,10 +41,17 @@ public class EnemyStateMachine : StateMachine
         SetBehaviour(behaviour);
     }
 
+    private void SetEnemyHittedBehaviour()
+    {
+        var behaviour = GetBehaviour<EnemyHittedBehaviour>();
+        SetBehaviour(behaviour);
+    }
+
     protected override void Subscribe()
     {
         enemyMovement.AttackRangeReached += SetEnemyAttackBehaviour;
         attackStateMachine.Ended += SetEnemyMovementBehaviour;
+        enemyHealth.Damaged += SetEnemyHittedBehaviour;
         enemyHealth.Dead += SetEnemyDeathBehaviour;
     }
 
@@ -51,6 +59,7 @@ public class EnemyStateMachine : StateMachine
     {
         enemyMovement.AttackRangeReached -= SetEnemyAttackBehaviour;
         attackStateMachine.Ended -= SetEnemyMovementBehaviour;
+        enemyHealth.Damaged -= SetEnemyHittedBehaviour;
         enemyHealth.Dead -= SetEnemyDeathBehaviour;
     }
 }

@@ -6,6 +6,8 @@ public class EnemyHealth : MonoBehaviour
 {
 	public event Action<int> HealthChanged;
 	public event Action Dead;
+	public event Action Damaged;
+	public event Action CanTakeDamage;
 
 	[SerializeField] private int _maxHealth;
 
@@ -34,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
 		StartCoroutine(OnTakeDamageRoutine());
 
-		print("hitted");
+		Damaged?.Invoke();
 
         if (_health <= 0)
 		{
@@ -47,5 +49,6 @@ public class EnemyHealth : MonoBehaviour
 		_canGetDamage = false;
 		yield return new WaitForSeconds(0.2f);
 		_canGetDamage = true;
+		CanTakeDamage?.Invoke();
 	}
 }

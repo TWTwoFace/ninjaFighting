@@ -3,7 +3,8 @@ using UnityEngine;
 public class EnemyVisuals : MonoBehaviour
 {
 	[SerializeField] private float moveDeltaAnimationThreshold;
-	
+	[SerializeField] private EnemyHealth _health;
+
 	private Animator animator;
 	
 	private Vector3 previousPosition;
@@ -35,5 +36,20 @@ public class EnemyVisuals : MonoBehaviour
 			var newSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime * blendSpeed * 2f);
 			animator.SetFloat(Speed, newSpeed);
 		}
+	}
+
+	private void OnDamaged()
+	{
+		animator.SetTrigger("Hitted");
+	}
+
+	private void OnEnable()
+	{
+		_health.Damaged += OnDamaged;
+	}
+
+	private void OnDisable()
+	{
+		_health.Damaged -= OnDamaged;
 	}
 }

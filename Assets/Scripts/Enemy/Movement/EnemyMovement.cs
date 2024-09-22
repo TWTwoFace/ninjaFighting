@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour
     public event Action AttackRangeReached;
     public event Action SteppedAway;
 
+    private const float _hittedSpeed = 5f;
+
     [SerializeField] private float followRange;
     [SerializeField] private float attackRange;
     [SerializeField] private float stopDistance;
@@ -17,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
 
     private Vector3 _stepAwayPosition;
+    private Vector3 _hittedDirection;
 
     private void Awake()
     {
@@ -57,6 +60,16 @@ public class EnemyMovement : MonoBehaviour
     {
         var newRotation = Quaternion.LookRotation((target.position - transform.position).normalized, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, Time.deltaTime * 500f);
+    }
+
+    public void DetermineHittedDirection()
+    {
+        _hittedDirection = transform.position - target.position;
+    }
+
+    public void HittedMove()
+    {
+        //transform.Translate(_hittedDirection * _hittedSpeed * Time.deltaTime);
     }
 
     private void DetermineMovedToTarget()
