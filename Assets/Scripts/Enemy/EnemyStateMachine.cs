@@ -19,8 +19,7 @@ public class EnemyStateMachine : StateMachine
 
     protected override void SetBehaviourByDefault()
     {
-        //SetEnemyMovementBehaviour();
-        SetEnemyDeathBehaviour();
+        SetEnemyMovementBehaviour();
     }
 
     private void SetEnemyMovementBehaviour()

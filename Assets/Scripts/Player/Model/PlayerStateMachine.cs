@@ -12,7 +12,7 @@ public class PlayerStateMachine : StateMachine
         base.InitBehaviours();
         _behavioursMap[typeof(PlayerMovementBehaviour)] = new PlayerMovementBehaviour(_playerMovement, _playerRotation);
         _behavioursMap[typeof(PlayerInDashBehaviour)] = new PlayerInDashBehaviour(_playerAttack, _playerDash, _playerMovement);
-        _behavioursMap[typeof(PlayerInAttackBehaviour)] = new PlayerInAttackBehaviour(_playerAttack, _playerDash, _playerMovement);
+        _behavioursMap[typeof(PlayerInAttackBehaviour)] = new PlayerInAttackBehaviour(_playerAttack, _playerDash, _playerMovement, _playerRotation);
     }
 
     protected override void SetBehaviourByDefault()

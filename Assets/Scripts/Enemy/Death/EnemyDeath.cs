@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour
 {
 	[SerializeField] private float timeBeforeDisappear;
+	[SerializeField] private float disappearSpeed;
 	
 	private Animator animator;
 
@@ -24,10 +25,11 @@ public class EnemyDeath : MonoBehaviour
 		float time = 2f;
 		while (time > 0f)
 		{
-			transform.Translate(Vector3.down * Time.deltaTime);
+			transform.Translate(Vector3.down * (Time.deltaTime * disappearSpeed));
 			
 			time -= Time.deltaTime;
-			yield return new WaitForEndOfFrame();
+			yield return null;
 		}
+		Destroy(gameObject);
 	}
 }
