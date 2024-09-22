@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -75,14 +76,21 @@ public class EnemyVisuals : MonoBehaviour
 		animator.SetTrigger("Hitted");
 		SpawnHitParticle();
 	}
+	
+	private void OnDead()
+	{
+		SpawnHitParticle();
+	}
 
 	private void OnEnable()
 	{
 		_health.Damaged += OnDamaged;
+		_health.Dead += OnDead;
 	}
 
 	private void OnDisable()
 	{
 		_health.Damaged -= OnDamaged;
+		_health.Dead -= OnDead;
 	}
 }

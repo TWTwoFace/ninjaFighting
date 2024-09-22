@@ -38,8 +38,6 @@ public class EnemyHealth : MonoBehaviour
 
 		HealthChanged?.Invoke(_health);
 
-		Damaged?.Invoke();
-
         if (_health <= 0)
 		{
 			Dead?.Invoke();
@@ -47,6 +45,7 @@ public class EnemyHealth : MonoBehaviour
 
 			return;
 		}
+		Damaged?.Invoke();
 
 		StartCoroutine(OnTakeDamageRoutine());
 	}
