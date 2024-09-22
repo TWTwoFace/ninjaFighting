@@ -11,10 +11,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - Ground
-  - 
-  - 
-  - 
+  - NormalGround
+  - NormalEnemy
+  - ShadowGround
+  - ShadowEnemy
   - 
   - 
   - 

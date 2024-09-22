@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
     public event Action Attacked;
     public event Action Dashed;
+    public event Action WorldSwitched;
 
     private PlayerInputActions _input;
     private Camera _camera;
@@ -42,15 +43,22 @@ public class PlayerInput : MonoBehaviour
         Dashed?.Invoke();
     }
 
+    private void OnSwitchWorldPerformed(InputAction.CallbackContext context)
+    {
+        WorldSwitched?.Invoke();
+    }
+
     private void OnEnable()
     {
         _input.Player.Attack.performed += OnAttackPerformed;
         _input.Player.Dash.performed += OnDashPerformed;
+        _input.Player.SwitchWorld.performed += OnSwitchWorldPerformed;
     }
 
     private void OnDisable()
     {
         _input.Player.Attack.performed -= OnAttackPerformed;
         _input.Player.Dash.performed -= OnDashPerformed;
+        _input.Player.SwitchWorld.performed -= OnSwitchWorldPerformed;
     }
 }
