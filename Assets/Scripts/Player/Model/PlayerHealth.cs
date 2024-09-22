@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public event Action CanTakeDamage;
     public event Action<int> HealthChanged;
+    public event Action Hitted;
     public event Action Dead;
 
     [SerializeField] private int _maxHealth;
@@ -36,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         _health = Math.Clamp(_health - damage, 0, _maxHealth);
 
         HealthChanged?.Invoke(_health);
+        Hitted?.Invoke();
 
         if(_health <= 0)
         {
