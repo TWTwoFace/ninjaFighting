@@ -55,6 +55,12 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(transform.position);
     }
 
+    public void RotateTowardsTarget()
+    {
+        var newRotation = Quaternion.LookRotation((target.position - transform.position).normalized, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, Time.deltaTime * 500f);
+    }
+
     private void DetermineMovedToTarget()
     {
         var distance = Vector3.Distance(transform.position, target.position) - 0.1f;

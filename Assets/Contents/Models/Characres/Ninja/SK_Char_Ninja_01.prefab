@@ -845,7 +845,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8440567439871286843}
-  - component: {fileID: 7397958396909281064}
   - component: {fileID: 2629869818145656408}
   m_Layer: 0
   m_Name: SK_Char_Ninja_01
@@ -871,27 +870,6 @@ Transform:
   - {fileID: 6875619227807612474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &7397958396909281064
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5489851430058907509}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a403747df6d74e14fbfe3a94609de95c, type: 3}
-  m_Controller: {fileID: 9100000, guid: ee69a07b0ece02f4d91d88a8b72d0c54, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &2629869818145656408
 CapsuleCollider:
   m_ObjectHideFlags: 0
