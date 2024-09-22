@@ -7,7 +7,8 @@ public class WorldSwitcher : MonoBehaviour
 	[SerializeField] private LayerMask normalWorldCullingMask;
 	[SerializeField] private LayerMask shadowWorldCullingMask;
 	
-	private WorldType currentWorld;
+	public static WorldType CurrentWorld { get; private set; }
+	
 	private Camera mainCamera;
 
 	private void Awake()
@@ -23,7 +24,7 @@ public class WorldSwitcher : MonoBehaviour
 
 	public void SwitchWorld(WorldType worldType)
 	{
-		currentWorld = worldType;
+		CurrentWorld = worldType;
 		if (worldType == WorldType.Normal) 
 			mainCamera.cullingMask = normalWorldCullingMask;
 		else if (worldType == WorldType.Shadow) 
@@ -32,9 +33,9 @@ public class WorldSwitcher : MonoBehaviour
 
 	public void ToggleWorld()
 	{
-		if (currentWorld == WorldType.Normal) 
+		if (CurrentWorld == WorldType.Normal) 
 			SwitchWorld(WorldType.Shadow);
-		else if (currentWorld == WorldType.Shadow) 
+		else if (CurrentWorld == WorldType.Shadow) 
 			SwitchWorld(WorldType.Normal);
 	}
 }
