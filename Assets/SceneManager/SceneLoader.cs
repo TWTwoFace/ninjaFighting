@@ -67,4 +67,9 @@ public class SceneLoader : MonoBehaviour
 
         isLoading = false;
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
