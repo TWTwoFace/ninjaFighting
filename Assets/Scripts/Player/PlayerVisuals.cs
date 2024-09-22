@@ -37,7 +37,7 @@ public class PlayerVisuals : MonoBehaviour
         }
         else
         {
-            var newSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime * blendSpeed * 2f);
+            var newSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime * blendSpeed * 5f);
             _animator.SetFloat(Speed, newSpeed);
         }
     }

@@ -7,6 +7,9 @@ public class EnemyVisuals : MonoBehaviour
 	
 	[SerializeField] private Transform hitParticlesPoint;
 	[SerializeField] private ParticleSystem[] hitParticles;
+	
+	[SerializeField] private ParticleSystem leftFootParticles;
+	[SerializeField] private ParticleSystem rightFootParticles;
 
 	private Animator animator;
 	
@@ -39,6 +42,16 @@ public class EnemyVisuals : MonoBehaviour
 			var newSpeed = Mathf.Lerp(currentSpeed, 0f, Time.deltaTime * blendSpeed * 2f);
 			animator.SetFloat(Speed, newSpeed);
 		}
+	}
+	
+	public void EmmitLeftFootstep()
+	{
+		leftFootParticles.Play();
+	}
+    
+	public void EmmitRightFootstep()
+	{
+		rightFootParticles.Play();
 	}
 	
 	private void SpawnHitParticle()
