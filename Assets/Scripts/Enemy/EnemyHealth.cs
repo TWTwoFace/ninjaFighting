@@ -38,7 +38,6 @@ public class EnemyHealth : MonoBehaviour
 
 		HealthChanged?.Invoke(_health);
 
-
 		Damaged?.Invoke();
 
         if (_health <= 0)

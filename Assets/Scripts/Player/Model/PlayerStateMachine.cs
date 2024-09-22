@@ -6,6 +6,7 @@ public class PlayerStateMachine : StateMachine
     [SerializeField] private PlayerDash _playerDash;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private PlayerRotation _playerRotation;
+    [SerializeField] private PlayerHealth _playerHealth;
 
     protected override void InitBehaviours()
     {
@@ -13,6 +14,7 @@ public class PlayerStateMachine : StateMachine
         _behavioursMap[typeof(PlayerMovementBehaviour)] = new PlayerMovementBehaviour(_playerMovement, _playerRotation);
         _behavioursMap[typeof(PlayerInDashBehaviour)] = new PlayerInDashBehaviour(_playerAttack, _playerDash, _playerMovement);
         _behavioursMap[typeof(PlayerInAttackBehaviour)] = new PlayerInAttackBehaviour(_playerAttack, _playerDash, _playerMovement, _playerRotation);
+        _behavioursMap[typeof(PlayerDeadBehaviour)] = new PlayerDeadBehaviour(_playerAttack, _playerDash);
     }
 
     protected override void SetBehaviourByDefault()
@@ -38,12 +40,19 @@ public class PlayerStateMachine : StateMachine
         SetBehaviour(behaviour);
     }
 
+    private void SetPlayerDeadBehaviour()
+    {
+        var behaviour = GetBehaviour<PlayerDeadBehaviour>();
+        SetBehaviour(behaviour);
+    }
+
     protected override void Subscribe()
     {
         _playerAttack.Attacked += SetPlayerMovementBehaviour;
         _playerDash.Dashed += SetPlayerMovementBehaviour;
         _playerAttack.Started += SetPlayerInAttackBehaviour;
         _playerDash.Started += SetPlayerInDashBehaviour;
+        _playerHealth.Dead += SetPlayerDeadBehaviour;
     }
 
     protected override void Unsubscribe()
@@ -52,5 +61,6 @@ public class PlayerStateMachine : StateMachine
         _playerDash.Dashed -= SetPlayerMovementBehaviour;
         _playerAttack.Started -= SetPlayerInAttackBehaviour;
         _playerDash.Started -= SetPlayerInDashBehaviour;
+        _playerHealth.Dead -= SetPlayerDeadBehaviour;
     }
 }

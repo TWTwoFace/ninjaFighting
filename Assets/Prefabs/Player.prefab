@@ -306,6 +306,7 @@ MonoBehaviour:
   _playerDash: {fileID: 8281278353919712583}
   _playerMovement: {fileID: 1500448660267852066}
   _playerRotation: {fileID: 2521459903302131522}
+  _playerHealth: {fileID: 8414286622450402939}
 --- !u!114 &2521459903302131522
 MonoBehaviour:
   m_ObjectHideFlags: 0

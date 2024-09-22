@@ -7,6 +7,9 @@ public class EnemyAttack : MonoBehaviour
 	public event Action AttackPerformed;
 	public event Action AttackStarted;
 
+	[SerializeField] private int _damage;
+	[SerializeField] private Collider _weaponCollider;
+
 	private const string _triggerName = "Attack";
 
 	private Animator _animator;
@@ -20,11 +23,28 @@ public class EnemyAttack : MonoBehaviour
 	{
 		_animator.SetTrigger(_triggerName);
 
-		AttackStarted?.Invoke();
+		_weaponCollider.enabled = true;
+
+        AttackStarted?.Invoke();
     }
 
 	public void OnAttackEnd()
 	{
-		AttackPerformed?.Invoke();
+        _weaponCollider.enabled = false;
+
+        AttackPerformed?.Invoke();
+	}
+
+	private void OnDisable()
+	{
+		_weaponCollider.enabled = false;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.TryGetComponent<PlayerHealth>(out var playerHealth))
+		{
+			playerHealth.TakeDamage(_damage);
+		}
 	}
 }
