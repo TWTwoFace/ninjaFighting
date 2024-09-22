@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bf498563d114e62a962f80ff258c914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   _maxHealth: 1
 --- !u!54 &6531980531538368873
 Rigidbody:
