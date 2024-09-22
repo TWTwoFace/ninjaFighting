@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 [RequireComponent(typeof(PlayerInput), typeof(Animator))]
 public class PlayerAttack : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class PlayerAttack : MonoBehaviour
     public event Action Attacked;
 
     [SerializeField] private Collider _weaponCollider;
+    [SerializeField, Min(0)] private int _damage;
 
     private const string _triggerName = "Attack";
 
@@ -23,13 +23,13 @@ public class PlayerAttack : MonoBehaviour
 
     private void Start()
     {
-        //_weaponCollider.enabled = false;
+        _weaponCollider.enabled = false;
     }
     
     public void OnAttackEnd()
     {
         Attacked?.Invoke();
-        //_weaponCollider.enabled = false;
+        _weaponCollider.enabled = false;
     }
 
     private void Attack()
@@ -37,7 +37,7 @@ public class PlayerAttack : MonoBehaviour
         if (enabled == false)
             return;
 
-        //_weaponCollider.enabled = true;
+        _weaponCollider.enabled = true;
 
         Started?.Invoke();
         _animator.SetTrigger(_triggerName);
@@ -53,4 +53,12 @@ public class PlayerAttack : MonoBehaviour
         _input.Attacked -= Attack;
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<EnemyHealth>(out var enemyHealth))
+        {
+            enemyHealth.TakeDamage(_damage);
+            print("damaged");
+        }
+    }
 }

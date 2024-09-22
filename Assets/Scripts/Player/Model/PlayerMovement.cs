@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
@@ -35,11 +36,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void AttackMove()
     {
+        
+
         transform.Translate(_attackDirection * _inAttackSpeed * Time.deltaTime);
     }
 
     private void GetAttackDirection()
     {
+        if (_input.GetMoveDirection() != Vector3.zero)
+        {
+            _attackDirection = _visualsTransform.forward;
+            AttackDirectionDeterminded?.Invoke(_attackDirection);
+            return;
+        }
         _attackDirection = transform.position - Camera.main.transform.position;
         _attackDirection.y = 0;
         _attackDirection.Normalize();

@@ -33,8 +33,6 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 newPosition = transform.position + (transform.position - target.position).normalized * stepAwayDistance;
 
-        print((target.position - newPosition).magnitude);
-
         if(NavMesh.SamplePosition(newPosition, out NavMeshHit myNavHit, 2, -1))
         {
             agent.SetDestination(myNavHit.position);
