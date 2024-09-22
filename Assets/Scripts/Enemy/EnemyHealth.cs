@@ -34,14 +34,18 @@ public class EnemyHealth : MonoBehaviour
 
 		HealthChanged?.Invoke(_health);
 
-		StartCoroutine(OnTakeDamageRoutine());
 
 		Damaged?.Invoke();
 
         if (_health <= 0)
 		{
 			Dead?.Invoke();
+			_canGetDamage = false;
+
+			return;
 		}
+
+		StartCoroutine(OnTakeDamageRoutine());
 	}
 
 	private IEnumerator OnTakeDamageRoutine()
