@@ -584,6 +584,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 19479c8552bb2bf9a8f1ca507c0fb6eb, type: 3}
   dashSounds:
   - {fileID: 8300000, guid: ca23d78109fcb569a998260a7f74fa66, type: 3}
+  switchWorldSounds:
+  - {fileID: 8300000, guid: 3bf9ec73ba4720ac9b9515e2545d3eb6, type: 3}
 --- !u!1 &7984154845962457149
 GameObject:
   m_ObjectHideFlags: 0
